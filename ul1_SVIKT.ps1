@@ -12,5 +12,13 @@ $TaisNimi =$Eesnimi + " " + $Perenimi
 $Kirjeldus = "Lokaalne konto"
 #kasutajanime confirmimine? write-outputiga
 Write-Output "Loodav kasutaja on $($KasutajaNimi)"
+#lülitame süsteemi teaded välja
+$ErrorActionPreference = 'SilentlyContinue'
 #kasutaja loomise command
 New-Localuser $Kasutajanimi -Password $Kasutajaparool -FullName $Taisnimi -Description $Kirjeldus
+#kontroll
+if(!$?){
+Write-Output "Tekkinud probleem kasutaja loomisega"
+}
+#süsteemi teaded tagasi sisse
+$ErrorActionPreference = 'Stop'
